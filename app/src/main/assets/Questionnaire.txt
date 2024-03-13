@@ -1,0 +1,132 @@
+20
+What is the capital of Portugal?
+3
+3
+Athens
+Frankfurt
+Lisbon
+What is the capital of Greece?
+4
+4
+Constantinople
+Sparta
+Nafplio
+Athens
+What is the capital of Japan?
+3
+3
+Seoul
+Kyoto
+Tokyo
+What is the capital of Brazil?
+4
+4
+Bogotá
+São Paulo
+Rio de Janeiro
+Brasília
+What is the capital of Australia?
+3
+2
+Auckland
+Canberra
+Wellington
+What is the capital of Egypt?
+4
+1
+Cairo
+Alexandria
+Luxor
+Giza
+What is the capital of Mexico?
+4
+3
+Madrid
+Buenos Aires
+Mexico City
+Lima
+What is the capital of Russia?
+3
+2
+Kiev
+Moscow
+St. Petersburg
+What is the capital of Canada?
+4
+1
+Ottawa
+Toronto
+Vancouver
+Montreal
+What is the capital of Argentina?
+3
+1
+Buenos Aires
+Santiago
+Montevideo
+What is the capital of Germany?
+4
+1
+Berlin
+Munich
+Frankfurt
+Hamburg
+What is the capital of Nigeria?
+3
+1
+Lagos
+Nairobi
+Abuja
+What is the capital of France?
+4
+2
+Madrid
+Paris
+Lyon
+Marseille
+What is the capital of South Korea?
+3
+1
+Seoul
+Tokyo
+Beijing
+What is the capital of Italy?
+4
+1
+Rome
+Milan
+Naples
+Venice
+What is the capital of Turkey?
+3
+1
+Ankara
+Constantinople
+Athens
+What is the capital of India?
+4
+1
+New Delhi
+Mumbai
+Bangalore
+Kolkata
+What is the capital of Iran?
+3
+1
+Tehran
+Baghdad
+Dubai
+What is the capital of Spain?
+4
+2
+Barcelona
+Madrid
+Valencia
+Seville
+What is the capital of Switzerland?
+4
+1
+Bern
+Geneva
+Lausanne
+Zürich

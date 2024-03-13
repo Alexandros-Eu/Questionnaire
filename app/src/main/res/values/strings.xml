@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Questionnaire</string>
+    <string name="question_number">Question 1</string>
+    <string name="question_text">This is the text of question 1</string>
+    <string name="answer_1">This is the first answer</string>
+    <string name="answer_2">This is the second answer</string>
+    <string name="answer_3">This is the third answer</string>
+    <string name="answer_4">This is the fourth answer</string>
+    <string name="button_previous">Previous</string>
+    <string name="button_confirm">Confirm</string>
+    <string name="button_next">Next</string>
+    <string name="project_title">Multiple Choice Test</string>
+    <string name="student_names">Students</string>
+    <string name="student_1">Αλέξανδρος Εουέντα: mscict22014</string>
+    <string name="student_2">Δήμητρα Μπογιατζάρα: mscict22046</string>
+    <string name="student_3">Βασίλης Πολυκρέτης: mscict22059</string>
+    <string name="button_continue">Continue</string>
+    <string name="text_view_score_screen_title">score</string>
+    <string name="text_view_correct_answers">You answered 9 out of 10 questions correctly!</string>
+    <string name="text_view_score">Your score is: 100pts!</string>
+    <string name="text_view_countdown">03:00</string>
+    <string name="text_view_examinee_title">Examinee\'s Details</string>
+    <string name="edit_text_examinee_name">Please type here your name</string>
+    <string name="edit_text_examinee_ID">Please type here your ID</string>
+</resources>
