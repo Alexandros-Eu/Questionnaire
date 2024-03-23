@@ -45,7 +45,7 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
         btnContinue.setEnabled(false);
         btnContinue.setOnClickListener(this);   // Set up a listener for the "Continue" button
 
-        if(!FileExists("capitals.db"))
+        if(!fileExists("capitals.db"))
         {
             copyDB("capitals.db");
         }
@@ -78,7 +78,7 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    boolean FileExists(String fileName)
+    boolean fileExists(String fileName)
     {
         File file = new File(getApplicationContext().getFilesDir(), fileName);
         return file.exists();
