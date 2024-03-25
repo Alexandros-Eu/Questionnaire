@@ -2,6 +2,9 @@ package pada.pms.android;
 
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -26,6 +29,8 @@ public class ScoreScreen extends AppCompatActivity {
     TextView examineeName;  // Text view for the examinee's name
 
     TextView examineeID;    // Text view for the examinee's ID
+
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -95,6 +100,35 @@ public class ScoreScreen extends AppCompatActivity {
             e.printStackTrace();
             System.err.println("There was an IO exception error");
         }
+
+    }
+
+    private void readDB()
+    {
+        db = SQLiteDatabase.openDatabase(getApplicationContext().getFilesDir() + "/capitals.db", null, 0);  // Connect to the db
+
+        // Execute the query and get the cursor
+        Cursor cursor = db.rawQuery("SELECT examinee_ID, examinee_name, correct_answers, score FROM LEADERBOARD", null);
+
+        if (cursor.moveToFirst()) {
+            do
+            {
+                int idIndex = cursor.getColumnIndex("examinee_ID");
+                int nameIndex = cursor.getColumnIndex("examinee_name");
+                int answersIndex = cursor.getColumnIndex("correct_answers");
+                int scoreIndex = cursor.getColumnIndex("score");
+
+                if (idIndex != -1 && nameIndex != -1 && answersIndex != -1 && scoreIndex != -1)
+                {
+                    int examineeID = cursor.getInt(idIndex);
+                    String examineeName = cursor.getString(nameIndex);
+                    int correctAnswers = cursor.getInt(answersIndex);
+                    int score = cursor.getInt(scoreIndex);
+                }
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
 
     }
 
