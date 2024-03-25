@@ -44,7 +44,44 @@ public class ScoreScreen extends AppCompatActivity {
         examineeName = findViewById(R.id.text_view_participant_name);
         examineeID = findViewById(R.id.text_view_participant_ID);
 
+        readTxt();
 
+
+
+
+    }
+
+    private void readDB()
+    {
+        db = SQLiteDatabase.openDatabase(getApplicationContext().getFilesDir() + "/capitals.db", null, 0);  // Connect to the db
+
+        // Execute the query and get the cursor
+        Cursor cursor = db.rawQuery("SELECT examinee_ID, examinee_name, correct_answers, score FROM LEADERBOARD", null);
+
+        if (cursor.moveToFirst()) {
+            do
+            {
+                int idIndex = cursor.getColumnIndex("examinee_ID");
+                int nameIndex = cursor.getColumnIndex("examinee_name");
+                int answersIndex = cursor.getColumnIndex("correct_answers");
+                int scoreIndex = cursor.getColumnIndex("score");
+
+                if (idIndex != -1 && nameIndex != -1 && answersIndex != -1 && scoreIndex != -1)
+                {
+                    int examineeID = cursor.getInt(idIndex);
+                    String examineeName = cursor.getString(nameIndex);
+                    int correctAnswers = cursor.getInt(answersIndex);
+                    int score = cursor.getInt(scoreIndex);
+                }
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+    }
+
+    private void readTxt()
+    {
         int score;  // Variable that will be used to pass to a "score string" variable
         int correctAnswers; // Variable that will be used to pass to a "correct answers" string variable
         String examineeName;
@@ -54,8 +91,8 @@ public class ScoreScreen extends AppCompatActivity {
         // Creating a Database.txt at the storage of the app in the phone / emulator
         // where the score, correct answers and  examinee's name/ID will be saved
         try (FileInputStream fileData = openFileInput("Database.txt");
-            InputStreamReader inputData = new InputStreamReader(fileData);
-            BufferedReader readerData = new BufferedReader(inputData))
+             InputStreamReader inputData = new InputStreamReader(fileData);
+             BufferedReader readerData = new BufferedReader(inputData))
         {
             // Clearing first the text view before passing information to display
             this.score.setText("");
@@ -100,36 +137,6 @@ public class ScoreScreen extends AppCompatActivity {
             e.printStackTrace();
             System.err.println("There was an IO exception error");
         }
-
-    }
-
-    private void readDB()
-    {
-        db = SQLiteDatabase.openDatabase(getApplicationContext().getFilesDir() + "/capitals.db", null, 0);  // Connect to the db
-
-        // Execute the query and get the cursor
-        Cursor cursor = db.rawQuery("SELECT examinee_ID, examinee_name, correct_answers, score FROM LEADERBOARD", null);
-
-        if (cursor.moveToFirst()) {
-            do
-            {
-                int idIndex = cursor.getColumnIndex("examinee_ID");
-                int nameIndex = cursor.getColumnIndex("examinee_name");
-                int answersIndex = cursor.getColumnIndex("correct_answers");
-                int scoreIndex = cursor.getColumnIndex("score");
-
-                if (idIndex != -1 && nameIndex != -1 && answersIndex != -1 && scoreIndex != -1)
-                {
-                    int examineeID = cursor.getInt(idIndex);
-                    String examineeName = cursor.getString(nameIndex);
-                    int correctAnswers = cursor.getInt(answersIndex);
-                    int score = cursor.getInt(scoreIndex);
-                }
-
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-
     }
 
 }
