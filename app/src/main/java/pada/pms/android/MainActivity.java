@@ -236,7 +236,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (cursor.getCount() > 0)  // Table already exists;
             {
                 SQLiteStatement insertStatement = db.compileStatement("INSERT INTO LEADERBOARD VALUES (?, ?, ?, ?)");
-                insertStatement.bindLong(1, Integer.parseInt(examineeID));
+                insertStatement.bindString(1, examineeID);
                 insertStatement.bindString(2, examineeName);
                 insertStatement.bindLong(3, correctAnswers);
                 insertStatement.bindLong(4, score);
@@ -244,11 +244,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             else
             {
-                SQLiteStatement tableStatement = db.compileStatement("CREATE TABLE LEADERBOARD (examinee_ID INTEGER PRIMARY KEY, examinee_name VARCHAR(50), correct_answers INTEGER, score INTEGER)");
+                SQLiteStatement tableStatement = db.compileStatement("CREATE TABLE LEADERBOARD (examinee_ID VARCHAR(50) PRIMARY KEY, examinee_name VARCHAR(50), correct_answers INTEGER, score INTEGER)");
                 tableStatement.execute();
 
                 SQLiteStatement insertStatement = db.compileStatement("INSERT INTO LEADERBOARD VALUES (?, ?, ?, ?)");
-                insertStatement.bindLong(1, Integer.parseInt(examineeID));
+                insertStatement.bindString(1, examineeID);
                 insertStatement.bindString(2, examineeName);
                 insertStatement.bindLong(3, correctAnswers);
                 insertStatement.bindLong(4, score);
@@ -257,6 +257,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         cursor.close();
+        db.close();
 
     }
 
