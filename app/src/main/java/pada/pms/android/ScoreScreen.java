@@ -44,9 +44,7 @@ public class ScoreScreen extends AppCompatActivity {
         examineeName = findViewById(R.id.text_view_participant_name);
         examineeID = findViewById(R.id.text_view_participant_ID);
 
-        readTxt();
-
-
+        readDB();
 
 
     }
@@ -58,7 +56,13 @@ public class ScoreScreen extends AppCompatActivity {
         // Execute the query and get the cursor
         Cursor cursor = db.rawQuery("SELECT examinee_ID, examinee_name, correct_answers, score FROM LEADERBOARD", null);
 
-        if (cursor.moveToFirst()) {
+        this.score.setText("");
+        this.correctAnswers.setText("");
+        this.examineeName.setText("");
+        this.examineeID.setText("");
+
+        if (cursor.moveToFirst())
+        {
             do
             {
                 int idIndex = cursor.getColumnIndex("examinee_ID");
@@ -68,15 +72,29 @@ public class ScoreScreen extends AppCompatActivity {
 
                 if (idIndex != -1 && nameIndex != -1 && answersIndex != -1 && scoreIndex != -1)
                 {
-                    int examineeID = cursor.getInt(idIndex);
+                    String examineeID = cursor.getString(idIndex);
                     String examineeName = cursor.getString(nameIndex);
                     int correctAnswers = cursor.getInt(answersIndex);
                     int score = cursor.getInt(scoreIndex);
+
+                    String scoreStr = "Your score is: " + score + "pts!";
+                    String correctAnswersStr = "You answered " + correctAnswers + " out of 10 questions correctly!";
+
+
+                    this.examineeID.setText(examineeID);
+                    this.examineeName.setText(examineeName);
+                    this.correctAnswers.setText(correctAnswersStr);
+                    this.score.setText(scoreStr);
+                }
+                else
+                {
+                    System.out.println("*** SOMETHING HAS GONE WRONG ***");
                 }
 
             } while (cursor.moveToNext());
         }
         cursor.close();
+        db.close();
 
     }
 
