@@ -3,6 +3,9 @@ package pada.pms.android;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -55,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // and reapply it when the user changes an answer
     Drawable backDraw;
 
+    SQLiteDatabase db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         answers[1] = findViewById(R.id.text_view_answer_2);
         answers[2] = findViewById(R.id.text_view_answer_3);
         answers[3] = findViewById(R.id.text_view_answer_4);
+
+        db = SQLiteDatabase.openDatabase(getApplicationContext().getFilesDir() + "/capitals.db", null, 0);  // Connect to the db
 
         // Set click listeners for the potential answers
         for(int i = 0; i < answers.length; i++)
@@ -217,6 +224,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+
+    // Writes score/correct answers, name, ID to a table in the db (if it doesn't exist it creates the table)
+    private void writeDB(int score, int correctAnswers, String examineeName, String examineeID)
+    {
+        // Check if the table already exists
+        Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='LEADERBOARD'", null);
+
+        if (cursor != null)
+        {
+            if (cursor.getCount() > 0)  // Table already exists;
+            {
+                SQLiteStatement insertStatement = db.compileStatement("INSERT INTO LEADERBOARD VALUES (?, ?, ?, ?)");
+                insertStatement.bindString(1, examineeID);
+                insertStatement.bindString(2, examineeName);
+                insertStatement.bindLong(3, correctAnswers);
+                insertStatement.bindLong(4, score);
+                insertStatement.execute();
+            }
+            else
+            {
+                SQLiteStatement tableStatement = db.compileStatement("CREATE TABLE LEADERBOARD (examinee_ID VARCHAR(50) PRIMARY KEY, examinee_name VARCHAR(50), correct_answers INTEGER, score INTEGER)");
+                tableStatement.execute();
+
+                SQLiteStatement insertStatement = db.compileStatement("INSERT INTO LEADERBOARD VALUES (?, ?, ?, ?)");
+                insertStatement.bindString(1, examineeID);
+                insertStatement.bindString(2, examineeName);
+                insertStatement.bindLong(3, correctAnswers);
+                insertStatement.bindLong(4, score);
+                insertStatement.execute();
+            }
+        }
+
+        cursor.close();
+        db.close();
+
+    }
+
     void setupCountDownTimer() {    // Method to set up and start the countdown timer
         CountDownTimer countDownTimer = createCountDownTimer(); // Create a CountDownTimer object
         countDownTimer.start(); // Start the countdown timer
@@ -270,7 +314,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         scoreScreenIntent.putExtra("numberOfCorrectAnswers", questionnaire.getNumberOfCorrectAnswers());
 
         // Save the score, number of correct answers, examinee's name & ID to a text file on the phone/emulator's storage
-        questionnaire.saveTextFile(questionnaire.getScore(), questionnaire.getNumberOfCorrectAnswers(), examineeName, examineeID);
+        // questionnaire.saveTextFile(questionnaire.getScore(), questionnaire.getNumberOfCorrectAnswers(), examineeName, examineeID);
+        writeDB(questionnaire.getScore(), questionnaire.getNumberOfCorrectAnswers(), examineeName, examineeID); // Writes them in a db
         startActivity(scoreScreenIntent);
     }
 
