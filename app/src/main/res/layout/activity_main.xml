@@ -6,17 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/image_view_background_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="Background image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/geography"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/text_view_question_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        tools:text="Question 1"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Question 1" />
 
     <TextView
         android:id="@+id/text_view_question"
@@ -26,11 +39,11 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="5dp"
         android:gravity="center"
-        tools:text="This is the text of question number 1"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_question_number" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view_question_number"
+        tools:text="This is the text of question number 1" />
 
     <TextView
         android:id="@+id/text_view_answer_1"
@@ -39,11 +52,11 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        tools:text="This is the first answer"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_question" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view_question"
+        tools:text="This is the first answer" />
 
     <TextView
         android:id="@+id/text_view_answer_2"
@@ -52,11 +65,11 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        tools:text="This is the second answer"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_answer_1" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view_answer_1"
+        tools:text="This is the second answer" />
 
     <TextView
         android:id="@+id/text_view_answer_3"
@@ -65,11 +78,11 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        tools:text="This is the third answer"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_answer_2" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view_answer_2"
+        tools:text="This is the third answer" />
 
     <TextView
         android:id="@+id/text_view_answer_4"
@@ -78,11 +91,11 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        tools:text="This is the fourth answer"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_answer_3" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view_answer_3"
+        tools:text="This is the fourth answer" />
 
     <Button
         android:id="@+id/button_previous"
