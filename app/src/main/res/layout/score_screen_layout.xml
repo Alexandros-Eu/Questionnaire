@@ -79,4 +79,18 @@
         app:layout_constraintStart_toStartOf="@+id/text_view_participant_name"
         app:layout_constraintTop_toBottomOf="@+id/text_view_participant_name"
         tools:text="mscict00000" />
+
+    <TextView
+        android:id="@+id/text_view_leaderboard_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="190dp"
+        android:text="@string/text_view_leaderboard_title"
+        android:textColor="#CCCCCC"
+        android:textSize="26sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
