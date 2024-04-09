@@ -74,6 +74,7 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
             intent.putExtra("name", examineeName.getText().toString());
             intent.putExtra("ID", examineeID.getText().toString());
             startActivity(intent);
+            finish();
         }
 
     }

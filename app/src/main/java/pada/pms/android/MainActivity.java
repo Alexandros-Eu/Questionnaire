@@ -317,6 +317,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // questionnaire.saveTextFile(questionnaire.getScore(), questionnaire.getNumberOfCorrectAnswers(), examineeName, examineeID);
         writeDB(questionnaire.getScore(), questionnaire.getNumberOfCorrectAnswers(), examineeName, examineeID); // Writes them in a db
         startActivity(scoreScreenIntent);
+        finish();
     }
 
 

@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -94,6 +95,7 @@ public class ScoreScreen extends AppCompatActivity {
         for (int i = 0; i < idList.size(); i++) {
             LinearLayout rowLayout = new LinearLayout(this);
             rowLayout.setOrientation(LinearLayout.HORIZONTAL);
+            rowLayout.setGravity(Gravity.CENTER_HORIZONTAL);
 
             String name = nameList.get(i);
             String id = idList.get(i);
@@ -107,15 +109,15 @@ public class ScoreScreen extends AppCompatActivity {
 
             nameTV.setText(name);
             idTV.setText(id);
-            String fullAnswers = String.valueOf(correctAnswers + " out of 10");
+            String fullAnswers = String.valueOf(correctAnswers + "/10");
             answersTV.setText(fullAnswers);
             String fullScore = String.valueOf(score) + "pts";
             scoreTV.setText(fullScore);
 
-            nameTV.setTextColor(Color.parseColor("#CCCCCC"));
-            idTV.setTextColor(Color.parseColor("#CCCCCC"));
-            answersTV.setTextColor(Color.parseColor("#CCCCCC"));
-            scoreTV.setTextColor(Color.parseColor("#CCCCCC"));
+            nameTV.setTextColor(Color.parseColor("#00FFFF"));
+            idTV.setTextColor(Color.parseColor("#00FFFF"));
+            answersTV.setTextColor(Color.parseColor("#00FFFF"));
+            scoreTV.setTextColor(Color.parseColor("#00FFFF"));
 
             // Set layout parameters
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
@@ -138,7 +140,6 @@ public class ScoreScreen extends AppCompatActivity {
 
             linearLayout.addView(rowLayout);
         }
-
 
     }
 
