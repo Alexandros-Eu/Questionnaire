@@ -19,6 +19,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/image_view_country_flag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="The flag of the country that is currently asked"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="330dp"
+        tools:src="@drawable/flag_ad" />
+
     <TextView
         android:id="@+id/text_view_question_number"
         android:layout_width="wrap_content"
