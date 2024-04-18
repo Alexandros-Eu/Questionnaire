@@ -73,6 +73,7 @@ public class ScoreScreen extends AppCompatActivity {
 
     }
 
+    // Creates the appropriate text views dynamically in order to create a leaderboard with every player's score & details
     private void createTextViews() {
         LinearLayout linearLayout = new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -147,7 +148,7 @@ public class ScoreScreen extends AppCompatActivity {
 
 
 
-    private void readLeaderboard()
+    private void readLeaderboard()  // Reads from db all player's scores & details and adds them to a designated list
     {
         db = SQLiteDatabase.openDatabase(getApplicationContext().getFilesDir() + "/capitals.db", null, 0);  // Connect to the db
         Cursor cursor = db.rawQuery("SELECT * FROM LEADERBOARD ORDER BY score DESC", null);
@@ -180,7 +181,7 @@ public class ScoreScreen extends AppCompatActivity {
         db.close();
     }
 
-    private void readDB()
+    private void readDB()   // Reads from db and sets the current's players score & details
     {
         db = SQLiteDatabase.openDatabase(getApplicationContext().getFilesDir() + "/capitals.db", null, 0);  // Connect to the db
 

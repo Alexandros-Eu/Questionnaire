@@ -79,13 +79,13 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    boolean fileExists(String fileName)
+    boolean fileExists(String fileName) // Checks if a file exists
     {
         File file = new File(getApplicationContext().getFilesDir(), fileName);
         return file.exists();
     }
 
-    void copyDB(String dbName)
+    void copyDB(String dbName)  // Copies the DB from the assets folder to the phone's storage
     {
         AssetManager assetMan = getAssets();
         InputStream input;
