@@ -10,7 +10,7 @@ public class Question
 {
     private String questionText;    // Variable to store the question text
 
-    private String pictureName;
+    private String flagName; // Variable to store the flag name
 
     private ArrayList<String> potentialAnswers; // Variable to store the list of potential answers
 
@@ -33,6 +33,16 @@ public class Question
     public void setQuestionText(String questionText)
     {
         this.questionText = questionText;
+    }
+
+    public String getFlagName()
+    {
+        return flagName;
+    }
+
+    public void setFlagName(String flagName)
+    {
+        this.flagName = flagName;
     }
 
     public int getCorrectAnswer()
