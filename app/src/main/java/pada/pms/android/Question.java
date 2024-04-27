@@ -10,7 +10,7 @@ public class Question
 {
     private String questionText;    // Variable to store the question text
 
-    private String pictureName;
+    private String countryFlag;
 
     private ArrayList<String> potentialAnswers; // Variable to store the list of potential answers
 
@@ -43,6 +43,14 @@ public class Question
     public void setCorrectAnswer(int correctAnswer)
     {
         this.correctAnswer = correctAnswer;
+    }
+
+    public String getCountryFlag() {
+        return countryFlag;
+    }
+
+    public void setCountryFlag(String countryFlag) {
+        this.countryFlag = countryFlag;
     }
 
     public int getUserAnswer()
