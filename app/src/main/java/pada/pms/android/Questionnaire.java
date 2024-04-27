@@ -2,6 +2,8 @@ package pada.pms.android;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -28,11 +30,14 @@ public class Questionnaire {
 
     private static Context cont;    // Android application context
 
+    private SQLiteDatabase db;
+
     private Questionnaire()
     {
         Questions = new ArrayList();
         currentQuestionNumber = -1;
-        loadTextFile(); // Load questions from a text file (used as a database)
+//        loadTextFile(); // Load questions from a text file (used as a database)
+        loadDatabase();
         drawQuestions();    // Shuffle and select a subset of questions
     }
 
@@ -91,6 +96,57 @@ public class Questionnaire {
         {
             System.err.println("Something went wrong.. exception while reading the database");
         }
+    }
+
+    private void loadDatabase()
+    {
+        // Open the database file
+        db = SQLiteDatabase.openDatabase(cont.getFilesDir() + "/capitals.db", null, 0);
+
+        Cursor cursor = db.rawQuery(
+                "SELECT Questions.question_text, Questions.number_of_answers, Questions.correct_answer, " +
+                        "Questions.potential_answer_one, Questions.potential_answer_two, Questions.potential_answer_three, " +
+                        "Questions.potential_answer_four, Countries.country_flag " +
+                        "FROM Questions " +
+                        "INNER JOIN Countries ON Countries.country_id = Questions.country_id", null);
+        Questions.clear();
+
+
+            if(cursor != null && cursor.moveToFirst())
+            {
+                do
+                {
+                    int questionTextIndex = cursor.getColumnIndex("question_text");
+                    int questionNumberOfAnswersIndex = cursor.getColumnIndex("number_of_answers");
+                    int correctAnswerIndex = cursor.getColumnIndex("correct_answer");
+                    int potentialAnswerOneIndex = cursor.getColumnIndex("potential_answer_one");
+                    int potentialAnswerTwoIndex = cursor.getColumnIndex("potential_answer_two");
+                    int potentialAnswerThreeIndex = cursor.getColumnIndex("potential_answer_three");
+                    int potentialAnswerFourIndex = cursor.getColumnIndex("potential_answer_four");
+                    int countryFlagIndex = cursor.getColumnIndex("country_flag");
+
+
+                    if(questionTextIndex != -1 && questionNumberOfAnswersIndex != -1 && correctAnswerIndex != -1 && potentialAnswerOneIndex != -1 && potentialAnswerTwoIndex != -1 && potentialAnswerThreeIndex != -1 && potentialAnswerFourIndex != -1)
+                    {
+                        Question question = new Question();
+                        question.setQuestionText(cursor.getString(questionTextIndex));
+                        question.setCorrectAnswer(cursor.getInt(correctAnswerIndex));
+                        question.setPotentialAnswer(cursor.getString(potentialAnswerOneIndex));
+                        question.setPotentialAnswer(cursor.getString(potentialAnswerTwoIndex));
+                        question.setPotentialAnswer(cursor.getString(potentialAnswerThreeIndex));
+                        question.setCountryFlag(cursor.getString(countryFlagIndex));
+
+                        if(cursor.getString(potentialAnswerFourIndex) != null)
+                        {
+                            question.setPotentialAnswer(cursor.getString(potentialAnswerFourIndex));
+                        }
+
+                        Questions.add(question);
+                    }
+                }
+                while(cursor.moveToNext());
+            }
+
     }
 
     void saveTextFile(int score, int correctAnswers, String examineeName, String examineeID)    // Method to save test results to a text file (in phone's storage)
