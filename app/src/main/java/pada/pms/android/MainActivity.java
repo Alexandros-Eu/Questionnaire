@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView countdown;
 
     TextView[] answers;
+
+    ImageView questionFlag;
 
     Button previous;
 
@@ -68,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Connect the UI elements by finding their ID
         questionNumber = findViewById(R.id.text_view_question_number);
         question = findViewById(R.id.text_view_question);
+        questionFlag = findViewById(R.id.image_view_country_flag);
         countdown = findViewById(R.id.text_view_countdown);
 
         answers = new TextView[4];
@@ -167,6 +171,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             questionNumber.setText("Question " + (currentQuestionNumber + 1));
             question.setText(currentQuestion.getQuestionText());
+
+            String flagName = currentQuestion.getCountryFlag(); // Retrieve the name of the flag from the Question
+            int flagResourceId = getResources().getIdentifier(flagName, "drawable", getPackageName());  // Get the drawable ID using the flag name
+            questionFlag.setImageResource(flagResourceId);  // Set the image
+
 
             // Setting the potential answers for the current question
             for(int i = 0; i < currentQuestion.getNumberOfPotentialAnswers(); i++)
