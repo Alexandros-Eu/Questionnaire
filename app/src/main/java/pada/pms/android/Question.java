@@ -20,7 +20,7 @@ public class Question
 
     public Question()
     {
-        potentialAnswers = new ArrayList();
+        potentialAnswers = new ArrayList<>();
         correctAnswer = -1; // Initialize the value to -1 as for 'no answer'
         userAnswer = -1;    // Initialize the value to -1 as for 'no answer'
     }

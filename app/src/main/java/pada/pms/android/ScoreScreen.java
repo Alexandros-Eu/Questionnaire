@@ -1,13 +1,10 @@
 package pada.pms.android;
 
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteStatement;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -51,8 +48,6 @@ public class ScoreScreen extends AppCompatActivity {
     List<String> idList = new ArrayList<>();
 
     ConstraintLayout constraintLayout;
-
-    private static final int MAX_COLUMNS = 3;    // Maximum number of TextViews per row in the leaderboard
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -110,9 +105,9 @@ public class ScoreScreen extends AppCompatActivity {
 
             nameTV.setText(name);
             idTV.setText(id);
-            String fullAnswers = String.valueOf(correctAnswers + "/10");
+            String fullAnswers = correctAnswers + "/10";
             answersTV.setText(fullAnswers);
-            String fullScore = String.valueOf(score) + "pts";
+            String fullScore = score + "pts";
             scoreTV.setText(fullScore);
 
             nameTV.setTextColor(Color.parseColor("#00FFFF"));

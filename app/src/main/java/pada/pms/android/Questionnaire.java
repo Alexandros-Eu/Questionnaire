@@ -11,8 +11,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -34,7 +32,7 @@ public class Questionnaire {
 
     private Questionnaire()
     {
-        Questions = new ArrayList();
+        Questions = new ArrayList<>();
         currentQuestionNumber = -1;
 //        loadTextFile(); // Load questions from a text file (used as a database)
         loadDatabase();
@@ -146,6 +144,7 @@ public class Questionnaire {
                 }
                 while(cursor.moveToNext());
             }
+            cursor.close();
 
     }
 

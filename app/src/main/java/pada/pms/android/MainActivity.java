@@ -23,10 +23,10 @@ import java.text.NumberFormat;
  * This class represents the Main Activity that handles the Questionnaire application.
  * It provides functionalities to presents a questionnaire to the user, handle user answers and
  * navigate through the questions.
- *
+ * <p>
  * The activity includes features such as displaying questions, managing countdown timer, selecting
  * and confirming answers and transitioning to the next activity upon completing the questionnaire.
- *
+ * <p>
  * It also incorporates methods for checking answers, updating the countdown timer display and
  * saving user responses.
  */
@@ -169,7 +169,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 answers[i].setEnabled(true);    // Enable all answer options
             }
 
-            questionNumber.setText("Question " + (currentQuestionNumber + 1));
+            String questionNumberText = "Question " + (currentQuestionNumber + 1);
+            questionNumber.setText(questionNumberText);
             question.setText(currentQuestion.getQuestionText());
 
             String flagName = currentQuestion.getCountryFlag(); // Retrieve the name of the flag from the Question
