@@ -19,7 +19,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
     <Button
         android:id="@+id/button_continue"
         android:layout_width="wrap_content"
@@ -67,5 +66,28 @@
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/edit_text_examinee_name"
         app:layout_constraintTop_toBottomOf="@+id/edit_text_examinee_name" />
+
+    <TextView
+        android:id="@+id/text_view_size_prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Select number of countries to be quizzed"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_examinee_ID" />
+
+    <NumberPicker
+        android:id="@+id/number_picker_quiz_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:inputType="number"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_size_prompt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
