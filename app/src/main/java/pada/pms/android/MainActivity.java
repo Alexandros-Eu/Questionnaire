@@ -101,8 +101,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Store the background color of the first answer Text view so we can reapply it later
         backDraw = answers[0].getBackground();
 
-        // Initialize the questionnaire using a singleton
-        questionnaire = Questionnaire.getInstance(this);
+        // Initialize the questionnaire using a singleton and passing the number of questions
+        questionnaire = Questionnaire.getInstance(this, getQuizSize());
 
         // Load the next question and set up the countdown timer
         doNext();
@@ -147,6 +147,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             checkAnswer();  // Checks if the answer is right or wrong
             disableAnswers();   // After answering you can no longer change your answer
         }
+    }
+
+    int getQuizSize()   // Get the number of questions from the previous activity (Splash Screen)
+    {
+        Intent intent = getIntent();
+        return intent.getIntExtra("quizSize", 20);
     }
 
     void doNext()

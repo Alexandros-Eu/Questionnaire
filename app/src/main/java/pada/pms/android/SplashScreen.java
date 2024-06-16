@@ -5,6 +5,7 @@ import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,8 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
 
     TextView examineeID;    // Text view for the examinee's ID
 
+    NumberPicker questionnaireSize; // UI for the user to choose the size of the questionnaire
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -40,6 +43,10 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
         btnContinue = findViewById(R.id.button_continue);
         examineeName = findViewById(R.id.edit_text_examinee_name);
         examineeID = findViewById(R.id.edit_text_examinee_ID);
+        questionnaireSize = findViewById(R.id.number_picker_quiz_size);
+
+        questionnaireSize.setMinValue(1);   // Setting the range of questions the user can choose
+        questionnaireSize.setMaxValue(20);
 
         btnContinue.setEnabled(false);
         btnContinue.setOnClickListener(this);   // Set up a listener for the "Continue" button
@@ -69,9 +76,10 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
             // If both name and ID are filled create an intent to start the Main Activity
             Intent intent = new Intent(this, MainActivity.class);
 
-            // Pass the examinee's name & ID as extras to the next activity
+            // Pass the examinee's name, ID & quiz size as extras to the next activity
             intent.putExtra("name", examineeName.getText().toString());
             intent.putExtra("ID", examineeID.getText().toString());
+            intent.putExtra("quizSize", questionnaireSize.getValue());
             startActivity(intent);
             finish();
         }

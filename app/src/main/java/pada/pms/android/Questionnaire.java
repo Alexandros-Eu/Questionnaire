@@ -30,23 +30,23 @@ public class Questionnaire {
 
     private SQLiteDatabase db;
 
-    private Questionnaire()
+    private Questionnaire(int quizSize)
     {
         Questions = new ArrayList<>();
         currentQuestionNumber = -1;
 //        loadTextFile(); // Load questions from a text file (used as a database)
         loadDatabase();
-        drawQuestions();    // Shuffle and select a subset of questions
+        drawQuestions(quizSize);    // Shuffle and select a subset of questions with the given size
     }
 
     // A singleton that works as a constructor restricting the questionnaire to ONLY one instance
     // The singleton gets or creates an instance of the Questionnaire
-    public static Questionnaire getInstance(Context contextualization)
+    public static Questionnaire getInstance(Context contextualization, int quizSize)
     {
         cont = contextualization;
         if(instance == null)
         {
-            instance = new Questionnaire();
+            instance = new Questionnaire(quizSize);
         }
 
         return instance;
@@ -169,10 +169,10 @@ public class Questionnaire {
 
     }
 
-    private void drawQuestions()    // Method to shuffle and select a subset of questions
+    private void drawQuestions(int quizSize)    // Method to shuffle and select a subset of questions
     {
         Collections.shuffle(Questions);
-        Questions = new ArrayList<>(Questions.subList(0, 10));
+        Questions = new ArrayList<>(Questions.subList(0, quizSize));
     }
 
     public int getNumberOfQuestions()
